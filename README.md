@@ -2,7 +2,7 @@
 Домашнее задания 8-03 - "Система мониторинга Zabbix"
 #Задание 1.
 #Screenshot1
-![Скриншот авторизации в админке](/home/kupriyanov/git/Netology_8-03-hw/images/hw8-03-1.png)
+![Скриншот авторизации в админке](https://github.com/Yuriykup/Netology_8-03-hw/blob/main/images/hw8-03-1.png)
 #Описание команд установки PostgresSQL
 ##Установка из официального дистрибутива
 ###sudo apt install postgresql postgresql-contrib
