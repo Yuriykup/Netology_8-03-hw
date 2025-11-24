@@ -37,6 +37,6 @@
 ### *Активируем запуск при перезагруки ОС*
 ### $systemctl enable zabbix-server zabbix-agent apache2
 ## 2.2.9 Запуск интерфейса Zabbix в браузере.
-### http://10.2.0.15/zabbix
+### http://192.168.0.108/zabbix
 ![Скриншот выбранной ОС и параметров](https://github.com/Yuriykup/Netology_8-03-hw/blob/main/images/hw8-03-1.png)
 
