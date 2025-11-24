@@ -23,10 +23,10 @@
 ### $apt update
 ## 2.2.5 Установливаем Zabbix Server, интерфейс, агента
 ### $apt install zabbix-server-pgsql zabbix-frontend-php php8.3-pgsql zabbix-apache-conf zabbix-sql-scripts zabbix-agent
-## 2.2.6 Создаём исходную базу данных
+## 2.2.6 Создаём пользователя и исходную базу данных.
 ### $sudo -u postgres createuser --pwprompt zabbix
 ### $sudo -u postgres createdb -O zabbix zabbix
-## *На сервере Zabbix импортирую исходную схему и данные. Будет предложено ввести только что созданный пароль.*
+### *На сервере Zabbix импортирую исходную схему и данные. Будет предложено ввести только что созданный пароль.*
 ### $zcat /usr/share/zabbix/sql-scripts/postgresql/server.sql.gz | sudo -u zabbix psql zabbix
 ## 2.2.7 Настройка базы данных для Zabbix-сервера.
 ### *Вношу изменения в файл /etc/zabbix/zabbix_server.conf*
