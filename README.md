@@ -1,12 +1,42 @@
 # Netology_8-03-hw
 Домашнее задания 8-03 - "Система мониторинга Zabbix"
 #Задание 1.
-#Screenshot1
-![Скриншот авторизации в админке](https://github.com/Yuriykup/Netology_8-03-hw/blob/main/images/hw8-03-1.png)
-# **Описание команд установки PostgresSQL**
-## Установка из официального дистрибутива
-### sudo apt install postgresql postgresql-contrib
+
+# **1. Описание команд установки PostgresSQL**
+## 1.1 Установка из официального дистрибутива
+### $sudo apt install postgresql postgresql-contrib
 ### *Пакет postgresql содержит основную систему управления базами данных, а postgresql-contrib — дополнительные модули и утилиты.*
-## Включаю автоматический запуск при загрузке системы:
-### sudo systemctl enable postgresql
+## 1.2 Включаю автоматический запуск при загрузке системы:
+### $sudo systemctl enable postgresql
+
+# **2. Установка Zabbix Server**
+## 2.1 Выбор ОС и других параметров для устанвоки Zabbix.
+![Скриншот выбранной ОС и параметров](https://github.com/Yuriykup/Netology_8-03-hw/blob/main/images/hw8-03-2.png)
+## 2.2 Команды установки Zabbix Server.
+## 2.2.1 Переходим в режим суперпользователя root:
+### $ sudo -s
+## 2.2.2 Скачиваем репозиторий Zabbix Server 7.4:
+### $wget https://repo.zabbix.com/zabbix/7.4/release/ubuntu/pool/main/z/zabbix-release/zabbix-release_latest_7.4+ubuntu24.04_all.deb
+## 2.2.3 Распоковываем скачаный репозиторий
+### $dpkg -i zabbix-release_latest_7.4+ubuntu24.04_all.deb
+## 2.2.4 Производим обновление
+### $apt update
+## 2.2.5 Установливаем Zabbix Server, интерфейс, агента
+### $apt install zabbix-server-pgsql zabbix-frontend-php php8.3-pgsql zabbix-apache-conf zabbix-sql-scripts zabbix-agent
+## 2.2.6 Создаём исходную базу данных
+### $sudo -u postgres createuser --pwprompt zabbix
+### $sudo -u postgres createdb -O zabbix zabbix
+## *На сервере Zabbix импортирую исходную схему и данные. Будет предложено ввести только что созданный пароль.*
+### $zcat /usr/share/zabbix/sql-scripts/postgresql/server.sql.gz | sudo -u zabbix psql zabbix
+## 2.2.7 Настройка базы данных для Zabbix-сервера.
+### *Вношу изменения в файл /etc/zabbix/zabbix_server.conf*
+### DBPassword=password
+## 2.2.8 Запустк Zabbix
+### *Для применения изменений перезагружаем сервисы Zabbix, Zabbix агента и сервер Apach2.
+### $systemctl restart zabbix-server zabbix-agent apache2
+### *Активируем запуск при перезагруки ОС*
+### $systemctl enable zabbix-server zabbix-agent apache2
+## 2.2.9 Запуск интерфейса Zabbix в браузере.
+### http://10.2.0.15/zabbix
+![Скриншот выбранной ОС и параметров](https://github.com/Yuriykup/Netology_8-03-hw/blob/main/images/hw8-03-1.png)
 
